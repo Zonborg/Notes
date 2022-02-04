@@ -1,0 +1,27 @@
+<h1>
+    <mat-toolbar>
+        <span>{{title}}</span>
+    </mat-toolbar>
+</h1>
+
+<body>
+    <ul>
+        <span *ngFor="let number of counter(notes.length); let i =index">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{notes[i].name}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>
+                    {{notes[i].noteContent}}
+                </p>
+                <button mat-button color="primary" (click)="deleteNote(notes[i].id)">Delete Note</button>
+                <button mat-button color="primary" (click)="updateNote(notes[i].id)">Update Note</button>
+            </mat-expansion-panel>
+        </span>
+    </ul>
+    <span>
+        <button mat-button color="primary" (click)="addNote()">Add Note</button>
+    </span>
+</body>
