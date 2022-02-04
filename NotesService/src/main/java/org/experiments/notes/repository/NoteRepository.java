@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface NoteRepository extends MongoRepository<Note, String> {
-    @Query("{name:'?0'}")
-    Note findNoteByName(String name);
+    @Query("{id:'?0'}")
+    Note findNoteById(String noteId);
 
     @Query(value="{noteContent:'?0'", fields ="{'name: 1")
     List<Note> findAll(String noteContent);

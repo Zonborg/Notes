@@ -40,9 +40,9 @@ public class NotesServiceApplication implements CommandLineRunner {
 		noteRepository.findAll().forEach(note-> System.out.println(getNoteDetails(note)));
 	}
 
-	public void getNoteByName(String name){
-		System.out.println("Getting note by name: " + name);
-		Note note = noteRepository.findNoteByName(name);
+	public void getNoteByName(String noteId){
+		System.out.println("Getting note by name: " + noteId);
+		Note note = noteRepository.findNoteById(noteId);
 		System.out.println(getNoteDetails(note));
 	}
 

@@ -34,21 +34,22 @@ public class NotesController {
     }
 
     @CrossOrigin
-    @GetMapping("/notes/{id}")
-    public Note getNote(@PathVariable String noteName){
-        return noteRepository.findNoteByName(noteName);
+    @GetMapping("/notes/{noteId}")
+    public Note getNote(@PathVariable String noteId){
+        System.out.println("Get note method called");
+        return noteRepository.findNoteById(noteId);
     }
 
     @CrossOrigin
-    @PutMapping("notes/{id}")
-    public Note updateNote(@RequestBody Note newNote, @PathVariable String noteId){
+    @PutMapping("/notes")
+    public Note updateNote(@RequestBody Note newNote){
         System.out.println("Update Method called");
-        return noteRepository.findById(noteId).map(note ->{
+        return noteRepository.findById(newNote.getId()).map(note ->{
             note.setName(newNote.getName());
             note.setNoteContent(newNote.getNoteContent());
             return noteRepository.save(note);
         }).orElseGet(() -> {
-            newNote.setId(noteId);
+            newNote.setId(newNote.getId());
             return noteRepository.save(newNote);
         });
     }
